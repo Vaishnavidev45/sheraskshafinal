@@ -11,9 +11,7 @@
 <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css"/>
 <style>
-/* ═══════════════════════════════════════════════
-   DESIGN TOKENS
-═══════════════════════════════════════════════ */
+
 :root{
   --pink:#e8449a; --rose:#f06292; --purple:#8b3fc8; --violet:#6d28d9;
   --peach:#f9b8d0; --accent:#ff6eb4;
@@ -40,9 +38,6 @@
   --input-bg:#180f2e; --input-border:#3b1f5e;
 }
 
-/* ═══════════════════════════════════════════════
-   RESET & BASE
-═══════════════════════════════════════════════ */
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{
@@ -53,16 +48,12 @@ body{
 }
 h1,h2,h3,h4{font-family:'Cormorant Garamond',serif;}
 
-/* ═══════════════════════════════════════════════
-   PAGE TRANSITIONS
-═══════════════════════════════════════════════ */
+
 .page{display:none;padding-top:68px;min-height:100vh;opacity:0;transform:translateY(16px);transition:opacity .4s ease,transform .4s ease;}
 .page.active{display:block;}
 .page.visible{opacity:1;transform:translateY(0);}
 
-/* ═══════════════════════════════════════════════
-   NAVBAR
-═══════════════════════════════════════════════ */
+
 nav{
   position:fixed;top:0;left:0;right:0;z-index:1000;
   display:flex;align-items:center;justify-content:space-between;
@@ -97,7 +88,7 @@ nav{
 .nav-link.active::after{opacity:1;}
 .nav-right{display:flex;align-items:center;gap:12px;}
 
-/* DARK TOGGLE */
+
 .dm-toggle{
   width:56px;height:30px;border-radius:50px;
   background:var(--bg3);border:2px solid var(--border2);
@@ -124,7 +115,7 @@ nav{
 }
 .nav-cta:hover{background:linear-gradient(135deg,#e8449a,#8b3fc8);border-color:transparent;color:#fff;box-shadow:0 6px 22px rgba(232,68,154,0.4);transform:translateY(-1px);}
 
-/* ALERT BADGE on nav */
+
 .alert-badge{
   position:relative;
   width:36px;height:36px;border-radius:50%;
@@ -142,9 +133,7 @@ nav{
 }
 @keyframes alertPulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.3);opacity:.7;}}
 
-/* ═══════════════════════════════════════════════
-   REAL-TIME ALERT PANEL
-═══════════════════════════════════════════════ */
+
 .alert-panel{
   position:fixed;top:78px;right:22px;z-index:1100;
   width:340px;background:var(--card);
@@ -179,9 +168,7 @@ nav{
 .alert-time{font-size:11px;color:var(--txt3);margin-top:3px;}
 .alert-empty{padding:24px;text-align:center;color:var(--txt3);font-size:13px;}
 
-/* ═══════════════════════════════════════════════
-   TOAST SYSTEM (multiple)
-═══════════════════════════════════════════════ */
+
 .toast-stack{position:fixed;top:84px;right:22px;z-index:3000;display:flex;flex-direction:column;gap:10px;pointer-events:none;}
 .toast{
   background:var(--card);border-radius:16px;padding:14px 18px;
@@ -203,9 +190,7 @@ nav{
 .t-progress{height:3px;background:var(--border);border-radius:2px;margin-top:10px;overflow:hidden;}
 .t-bar{height:100%;background:linear-gradient(90deg,#e8449a,#8b3fc8);border-radius:2px;width:100%;transition:width linear;}
 
-/* ═══════════════════════════════════════════════
-   GLOBAL LOADING OVERLAY
-═══════════════════════════════════════════════ */
+
 .page-loader{
   position:fixed;inset:0;z-index:9000;
   background:var(--bg);
@@ -217,9 +202,7 @@ nav{
 @keyframes logoPulse{0%,100%{opacity:1;}50%{opacity:.5;}}
 .loader-ring{width:56px;height:56px;border-radius:50%;border:4px solid var(--border2);border-top-color:var(--purple);border-right-color:var(--pink);animation:spin .8s linear infinite;}
 
-/* ═══════════════════════════════════════════════
-   SKELETON LOADERS
-═══════════════════════════════════════════════ */
+
 .skeleton{background:linear-gradient(90deg,var(--bg3) 25%,var(--bg2) 50%,var(--bg3) 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;border-radius:10px;}
 @keyframes shimmer{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
 .skel-card{background:var(--card);border-radius:var(--r);padding:24px;border:1px solid var(--border);}
@@ -230,9 +213,7 @@ nav{
 .skel-icon{width:54px;height:54px;border-radius:14px;margin-bottom:18px;}
 .skel-btn{height:36px;width:100px;border-radius:50px;}
 
-/* ═══════════════════════════════════════════════
-   ERROR STATE
-═══════════════════════════════════════════════ */
+
 .error-state{
   display:flex;flex-direction:column;align-items:center;
   justify-content:center;padding:60px 40px;text-align:center;
@@ -251,9 +232,6 @@ nav{
 }
 .retry-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,68,154,0.4);}
 
-/* ═══════════════════════════════════════════════
-   HERO
-═══════════════════════════════════════════════ */
 #hero{min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
 .hero-bg{position:absolute;inset:0;background:linear-gradient(150deg,#08040f 0%,#2d0a4e 35%,#5b1a8a 65%,#9b3dbf 100%);}
 .hero-img{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1600&q=85') center 20%/cover no-repeat;opacity:.22;mix-blend-mode:luminosity;}
@@ -263,7 +241,7 @@ nav{
 .b3{width:350px;height:350px;background:radial-gradient(circle,rgba(255,110,180,.2),transparent 70%);top:40%;left:8%;animation-delay:-8s;}
 @keyframes blobF{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(30px,-20px) scale(1.06);}66%{transform:translate(-20px,15px) scale(.96);}}
 
-/* Particle canvas */
+
 #particles{position:absolute;inset:0;z-index:1;pointer-events:none;}
 
 .hero-ribbon{
@@ -301,27 +279,19 @@ nav{
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
 .count-up{display:inline-block;}
 
-/* ═══════════════════════════════════════════════
-   QUOTE BANNER
-═══════════════════════════════════════════════ */
 .q-banner{background:linear-gradient(135deg,var(--bg3),var(--bg2));padding:60px 44px;text-align:center;border-top:1px solid var(--border);border-bottom:1px solid var(--border);transition:var(--transition);}
 .qb-mark{font-family:'Cormorant Garamond',serif;font-size:60px;color:var(--pink);opacity:.3;line-height:.8;margin-bottom:6px;}
 .qb-text{font-family:'Cormorant Garamond',serif;font-size:clamp(24px,3.8vw,44px);color:var(--txt);font-style:italic;line-height:1.3;margin-bottom:14px;transition:color .35s;}
 .qb-text strong{background:linear-gradient(135deg,#e8449a,#8b3fc8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-style:normal;}
 .qb-sub{font-size:13px;color:var(--txt3);letter-spacing:2px;text-transform:uppercase;font-weight:600;transition:color .35s;}
 
-/* ═══════════════════════════════════════════════
-   SECTIONS
-═══════════════════════════════════════════════ */
 .section{padding:80px 44px;max-width:1200px;margin:0 auto;}
 .sec-tag{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#fce7f3,#ede9fe);color:#8b3fc8;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:6px 18px;border-radius:50px;margin-bottom:16px;}
 [data-theme="dark"] .sec-tag{background:linear-gradient(135deg,rgba(232,68,154,.15),rgba(139,63,200,.15));color:#d87cde;}
 .sec-title{font-size:clamp(28px,4vw,46px);color:var(--txt);margin-bottom:12px;line-height:1.2;transition:color .35s;}
 .sec-sub{color:var(--txt3);font-size:15px;max-width:480px;line-height:1.75;transition:color .35s;}
 
-/* ═══════════════════════════════════════════════
-   FEATURE CARDS — animated entry
-═══════════════════════════════════════════════ */
+
 .feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(262px,1fr));gap:20px;margin-top:48px;}
 .feat-card{
   background:var(--card);border-radius:var(--r-lg);padding:32px;
@@ -352,9 +322,7 @@ nav{
 .feat-arr{display:inline-flex;align-items:center;gap:6px;margin-top:18px;font-size:13px;font-weight:600;color:var(--purple);cursor:pointer;border:none;background:transparent;transition:.25s;font-family:'Outfit',sans-serif;position:relative;z-index:1;}
 .feat-arr:hover{gap:12px;color:var(--pink);}
 
-/* ═══════════════════════════════════════════════
-   HOW IT WORKS
-═══════════════════════════════════════════════ */
+
 .hiw{background:linear-gradient(150deg,#08040f,#2d0a4e,#5b1a8a);padding:88px 44px;}
 .hiw-inner{max-width:1000px;margin:0 auto;text-align:center;}
 .hiw-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px;margin-top:56px;}
@@ -368,9 +336,6 @@ nav{
 .hiw-ttl{color:#fff;font-size:17px;font-weight:600;margin-bottom:8px;}
 .hiw-desc{color:rgba(255,255,255,.55);font-size:13.5px;line-height:1.7;}
 
-/* ═══════════════════════════════════════════════
-   MAP PAGE
-═══════════════════════════════════════════════ */
 .map-wrap{height:calc(100vh - 68px);display:grid;grid-template-columns:380px 1fr;}
 .map-sb{
   background:var(--card);padding:24px;overflow-y:auto;
@@ -408,13 +373,12 @@ nav{
 .t-btn:hover{border-color:var(--pink);color:var(--pink);}
 .t-btn.active{background:linear-gradient(135deg,#e8449a,#8b3fc8);border-color:transparent;color:#fff;}
 
-/* Map loading skeleton */
+
 .map-skeleton{
   background:var(--card2);border-radius:14px;padding:18px;margin-top:12px;
   border:1px solid var(--border);overflow:hidden;
 }
 
-/* Score card */
 .sc-card{background:linear-gradient(135deg,var(--bg3),var(--bg2));border-radius:16px;padding:18px;margin:13px 0;border:1px solid var(--border2);opacity:0;transform:translateY(10px);transition:.4s ease;}
 .sc-card.show{opacity:1;transform:translateY(0);}
 .sc-top{display:flex;align-items:flex-end;gap:8px;margin-bottom:10px;}
@@ -429,7 +393,7 @@ nav{
 .sc-label.moderate{background:rgba(245,158,11,.15);color:#f59e0b;}
 .sc-label.danger{background:rgba(239,68,68,.15);color:#ef4444;}
 
-/* Route card */
+
 .rc-card{background:var(--card2);border-radius:14px;padding:14px;margin-top:12px;border:1px solid var(--border);opacity:0;transform:translateY(10px);transition:.4s .15s ease;}
 .rc-card.show{opacity:1;transform:translateY(0);}
 .r-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 12px;border-radius:50px;font-size:11px;font-weight:700;margin-bottom:6px;}
@@ -439,14 +403,13 @@ nav{
 [data-theme="dark"] .rb-f{background:rgba(29,78,216,.18);color:#60a5fa;}
 .r-d{font-size:12.5px;color:var(--txt3);line-height:1.6;}
 
-/* Nearby */
+
 .nb-sec{margin-top:14px;opacity:0;transform:translateY(10px);transition:.4s .25s ease;}
 .nb-sec.show{opacity:1;transform:translateY(0);}
 .nb-hd{font-size:11px;font-weight:700;letter-spacing:1.5px;color:var(--txt3);margin-bottom:10px;}
 .nb-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--txt2);animation:fadeUp .4s ease both;}
 .nb-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
 
-/* Map loading overlay on sidebar */
 .sb-loading{
   position:absolute;inset:0;background:var(--card);
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;
@@ -464,15 +427,11 @@ nav{
 #map{width:100%;height:100%;}
 .leaflet-routing-container{display:none!important;}
 
-/* Custom leaflet markers override */
 .marker-safe-pin, .marker-danger-pin, .marker-warn-pin, .marker-user-pin, .marker-place-pin{
   filter:drop-shadow(0 4px 8px rgba(0,0,0,.3));
   transition:transform .2s ease;
 }
 
-/* ═══════════════════════════════════════════════
-   LIVE ALERTS TICKER on map
-═══════════════════════════════════════════════ */
 .map-alerts-ticker{
   position:absolute;bottom:0;left:0;right:0;z-index:800;
   background:rgba(8,4,15,.85);backdrop-filter:blur(10px);
@@ -494,9 +453,7 @@ nav{
 }
 @keyframes tickerScroll{0%{transform:translateX(100%);}100%{transform:translateX(-100%);}}
 
-/* ═══════════════════════════════════════════════
-   COMPLAINT PAGE
-═══════════════════════════════════════════════ */
+
 .comp-wrap{padding:48px 44px;max-width:840px;margin:0 auto;}
 .comp-hd{text-align:center;margin-bottom:44px;}
 .anon-pill{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#dcfce7,#bbf7d0);color:#16a34a;padding:8px 22px;border-radius:50px;font-size:12.5px;font-weight:700;margin-bottom:18px;animation:fadeUp .5s ease both;}
@@ -552,10 +509,7 @@ nav{
 .hm-cell[data-tip]:hover::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:rgba(0,0,0,.8);color:#fff;font-size:10px;padding:4px 8px;border-radius:6px;white-space:nowrap;pointer-events:none;z-index:10;}
 .hm-leg{display:flex;align-items:center;gap:8px;margin-top:6px;}
 .hm-sw{width:20px;height:10px;border-radius:3px;}
-
-/* ═══════════════════════════════════════════════
-   SCHEMES
-═══════════════════════════════════════════════ */
+   
 .sch-wrap{padding:48px 44px;max-width:1120px;margin:0 auto;}
 .fil-row{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0 36px;}
 .fil-btn{padding:8px 20px;border-radius:50px;border:2px solid var(--border2);background:var(--card);font-size:13px;font-weight:600;color:var(--txt3);cursor:pointer;transition:.22s;font-family:'Outfit',sans-serif;}
@@ -589,12 +543,9 @@ nav{
 .sch-lnk{font-size:13px;font-weight:600;color:var(--purple);cursor:pointer;border:none;background:transparent;font-family:'Outfit',sans-serif;transition:.2s;text-decoration:none;display:inline-flex;align-items:center;gap:4px;}
 .sch-lnk:hover{color:var(--pink);gap:8px;}
 
-/* Scheme skeleton */
 .sch-skel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px;}
 
-/* ═══════════════════════════════════════════════
-   DASHBOARD
-═══════════════════════════════════════════════ */
+
 .dash-wrap{padding:40px 44px;max-width:1200px;margin:0 auto;}
 .dash-hero{background:linear-gradient(135deg,#08040f,#2d0a4e,#5b1a8a);border-radius:var(--r-lg);padding:36px 44px;color:#fff;margin-bottom:28px;position:relative;overflow:hidden;}
 .dh-glow{position:absolute;right:-80px;top:-80px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(232,68,154,.3),transparent 70%);animation:blobF 10s ease-in-out infinite;}
@@ -639,9 +590,7 @@ nav{
 .tip-lbl{font-size:11px;font-weight:700;letter-spacing:1.5px;color:var(--txt3);margin-bottom:8px;transition:color .35s;}
 .tip-txt{font-size:13px;color:var(--txt2);line-height:1.7;transition:color .35s;}
 
-/* ═══════════════════════════════════════════════
-   MODAL
-═══════════════════════════════════════════════ */
+
 .m-bg{position:fixed;inset:0;z-index:2000;background:rgba(8,4,15,.75);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;}
 .m-bg.open{display:flex;}
 .modal{background:var(--card);border-radius:var(--r-lg);width:100%;max-width:420px;position:relative;overflow:hidden;animation:mPop .35s cubic-bezier(.34,1.56,.64,1);border:1px solid var(--border2);transition:background .35s,border-color .35s;}
@@ -665,14 +614,11 @@ nav{
 .foot-strip{background:linear-gradient(135deg,#e8449a,#8b3fc8);padding:20px 44px;text-align:center;}
 .foot-strip p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:#fff;letter-spacing:.3px;}
 
-/* utility */
 .spin{animation:spin .8s linear infinite!important;}
 @keyframes spin{to{transform:rotate(360deg);}}
 .loading-w{display:flex;align-items:center;justify-content:center;padding:48px;}
 
-/* ═══════════════════════════════════════════════
-   RESPONSIVE
-═══════════════════════════════════════════════ */
+
 @media(max-width:1024px){
   .map-wrap{grid-template-columns:320px 1fr;}
 }
@@ -696,7 +642,7 @@ nav{
 </head>
 <body>
 
-<!-- PAGE LOADER -->
+
 <div class="page-loader" id="page-loader">
   <div style="font-size:36px">🛡️</div>
   <div class="loader-logo">SheRaksha</div>
@@ -704,7 +650,7 @@ nav{
   <div style="font-size:13px;color:var(--txt3);font-style:italic;">Our Raksha is Your Suraksha…</div>
 </div>
 
-<!-- NAVBAR -->
+
 <nav id="nav">
   <div class="nav-logo" onclick="showPage('home')">
     <div class="logo-shield">🛡️</div>
@@ -733,7 +679,7 @@ nav{
   </div>
 </nav>
 
-<!-- ALERT PANEL -->
+
 <div class="alert-panel" id="alert-panel">
   <div class="alert-panel-hd">
     <div class="alert-panel-title">🔔 Live Safety Alerts</div>
@@ -744,10 +690,9 @@ nav{
   </div>
 </div>
 
-<!-- TOAST STACK -->
 <div class="toast-stack" id="toast-stack"></div>
 
-<!-- MODAL -->
+
 <div class="m-bg" id="modal">
   <div class="modal">
     <button class="m-close" onclick="closeModal()">✕</button>
@@ -773,7 +718,7 @@ nav{
   </div>
 </div>
 
-<!-- ═══════════════════ HOME ═══════════════════ -->
+
 <div id="page-home" class="page active">
   <div id="hero">
     <div class="hero-bg"></div>
@@ -858,7 +803,7 @@ nav{
   <div class="foot-strip"><p>✦ &nbsp;"Our Raksha is Your Suraksha" &nbsp;— protecting every step of her journey &nbsp;✦</p></div>
 </div>
 
-<!-- ═══════════════════ MAP ═══════════════════ -->
+
 <div id="page-map" class="page">
   <div class="map-wrap" style="position:relative;">
     <div class="map-sb" id="map-sb">
@@ -935,7 +880,6 @@ nav{
   </div>
 </div>
 
-<!-- ═══════════════════ REPORT ═══════════════════ -->
 <div id="page-report" class="page">
   <div class="comp-wrap">
     <div class="comp-hd">
@@ -985,7 +929,7 @@ nav{
       </button>
     </div>
 
-    <!-- SUCCESS STATE (hidden initially) -->
+  
     <div class="card" id="report-success" style="display:none;">
       <div class="submit-success">
         <div class="success-ico">✅</div>
@@ -1012,7 +956,7 @@ nav{
   </div>
 </div>
 
-<!-- ═══════════════════ SCHEMES ═══════════════════ -->
+
 <div id="page-schemes" class="page">
   <div class="sch-wrap">
     <div class="sec-tag">✦ Government & NGO</div>
@@ -1029,7 +973,6 @@ nav{
   </div>
 </div>
 
-<!-- ═══════════════════ DASHBOARD ═══════════════════ -->
 <div id="page-dashboard" class="page">
   <div class="dash-wrap">
     <div class="dash-hero">
@@ -1070,9 +1013,7 @@ nav{
 </div>
 
 <script>
-/* ═══════════════════════════════════════════════
-   THEME
-═══════════════════════════════════════════════ */
+
 function toggleDark(){
   const h=document.documentElement;
   const d=h.getAttribute('data-theme')==='dark';
@@ -1080,9 +1021,7 @@ function toggleDark(){
   if(map){map.eachLayer(l=>{if(l._url)map.removeLayer(l);});addTile();}
 }
 
-/* ═══════════════════════════════════════════════
-   PAGE SYSTEM
-═══════════════════════════════════════════════ */
+
 function showPage(pg){
   document.querySelectorAll('.page').forEach(p=>{p.classList.remove('active','visible');});
   const el=document.getElementById('page-'+pg);
